@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MasterAssetFolder" id="{40a5edcc-75a8-4da2-86c3-6c85a5f53120}">
+		<property name="assetDirectory">
+			<value>../../../../../../../Volumes/Projects/6. REPOSITORIES/2022/9. Sep/ANE_Blog_UE5_FMOD_Footsteps/Content/FMOD</value>
+		</property>
+	</object>
+</objects>
