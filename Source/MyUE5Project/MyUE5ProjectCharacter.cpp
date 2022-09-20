@@ -1,12 +1,18 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "MyUE5ProjectCharacter.h"
+
+#include "Kismet/KismetSystemLibrary.h"//
+
+#include "Animation/AnimInstanceProxy.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
+
+
 
 //////////////////////////////////////////////////////////////////////////
 // AMyUE5ProjectCharacter
@@ -16,6 +22,11 @@ AMyUE5ProjectCharacter::AMyUE5ProjectCharacter()
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 
+	// Create an FMOD Component. 
+	FmodAudioComponent = CreateDefaultSubobject<UFMODAudioComponent>(TEXT("Footsteps Audio Component")); //Creates the component.
+	FmodAudioComponent->SetupAttachment(GetMesh()); // Attach it to the Skeletal Mesh so the sound travels with it.
+	FmodAudioComponent->SetActive(false); // Initialize this component deactivated so it doesn't play at start.
+	
 	// set our turn rate for input
 	TurnRateGamepad = 50.f;
 
@@ -46,10 +57,54 @@ AMyUE5ProjectCharacter::AMyUE5ProjectCharacter()
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
-
+	
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 }
+
+#pragma region FMOD Footsteps Parameter Implementation
+
+UPhysicalMaterial* AMyUE5ProjectCharacter::GetPhysicalMaterialByLinetrace(const float &OffsetZ, const bool &bDebug)
+{
+	FVector LineStart = GetActorLocation();
+	FVector LineEnd = FVector(LineStart.X, LineStart.Y, LineStart.Z + OffsetZ);
+	EDrawDebugTrace::Type DebugType;
+	FHitResult HitResult; // This struct will hold the linetrace hit results   
+	
+	if (bDebug)                               
+		DebugType = EDrawDebugTrace::ForOneFrame;
+	else                                          
+		DebugType = EDrawDebugTrace::None;       
+
+	UKismetSystemLibrary::LineTraceSingle(this, LineStart, LineEnd,UEngineTypes::ConvertToTraceType(ECC_Visibility),
+		false,TArray<AActor*>(), DebugType, HitResult, true,FLinearColor::Green, FLinearColor::Red);       
+	
+	return Cast<UPhysicalMaterial>(HitResult.PhysMaterial);
+}
+
+
+void AMyUE5ProjectCharacter::SetFootstepsParameter(const UPhysicalMaterial* HitPhysicalMaterial, const bool &bDebug, const FName ParameterName)
+{
+	if (PhysicalMaterialMap.Contains(HitPhysicalMaterial)) // Checks if the map contains the Physical Material name as a key, otherwise the engine will crash.
+	{
+		FmodAudioComponent->SetParameter(ParameterName, PhysicalMaterialMap[HitPhysicalMaterial]); // Sets the FMOD parameter using the value of the key.
+
+		if (bDebug) // If true, prints the name of the Physical Material to the screen and "C++ Implementation".
+			{
+				GEngine->AddOnScreenDebugMessage(0, 1, FColor::Orange,
+					"Physical Material: " + HitPhysicalMaterial->GetName());
+
+				GEngine->AddOnScreenDebugMessage(1, 1, FColor::Red,
+				"C++ Implementation");
+			}
+	}
+	else // If a valid key wasn't found, set the default value "0", otherwise the last set parameter will remain.
+	{
+		FmodAudioComponent->SetParameter(ParameterName, 0); 
+	}
+}
+
+#pragma endregion 
 
 //////////////////////////////////////////////////////////////////////////
 // Input

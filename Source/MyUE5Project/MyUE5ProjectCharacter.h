@@ -2,6 +2,9 @@
 
 #pragma once
 
+#include "FMODBlueprintStatics.h"
+#include "PhysicalMaterials/PhysicalMaterial.h"//
+
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "MyUE5ProjectCharacter.generated.h"
@@ -24,9 +27,31 @@ public:
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Input)
 	float TurnRateGamepad;
-
+	
 protected:
+	
+	#pragma region FMOD Footsteps Parameter Declarations
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Audio")
+	UFMODAudioComponent* FmodAudioComponent;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Audio")
+	TMap<UPhysicalMaterial*, float> PhysicalMaterialMap;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Audio")
+	bool bPrintDebug;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Audio")
+	float Offset;
+	
+	UFUNCTION(BlueprintCallable, Category="Audio")
+	UPhysicalMaterial* GetPhysicalMaterialByLinetrace(const float &OffsetZ, const bool &bDebug);
+
+	UFUNCTION(BlueprintCallable, Category="Audio")
+	void SetFootstepsParameter(const UPhysicalMaterial* HitPhysicalMaterial, const bool &bDebug, const FName ParameterName);
+	
+	#pragma endregion
+	
 	/** Called for forwards/backward input */
 	void MoveForward(float Value);
 
