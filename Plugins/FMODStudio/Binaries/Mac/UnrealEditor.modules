@@ -2,7 +2,7 @@
 	"BuildId": "19505902",
 	"Modules": 
 	{
-		"FMODStudio": "UnrealEditor-FMODStudio-0014.dylib",
-		"FMODStudioEditor": "UnrealEditor-FMODStudioEditor-0014.dylib"
+		"FMODStudio": "UnrealEditor-FMODStudio.dylib",
+		"FMODStudioEditor": "UnrealEditor-FMODStudioEditor.dylib"
 	}
 }

@@ -47,7 +47,6 @@ SourceArt/**/*.png
 SourceArt/**/*.tga
 
 # Binary Files
-Binaries/*
 
 # Builds
 Build/*
@@ -72,6 +71,10 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
-Plugins/Developer
-.idea
 
+# Food and extra ignore
+Plugins/Developer
+MyUE5_FMOD_Project/.cache
+MyUE5_FMOD_Project/.unsaved
+MyUE5_FMOD_Project/.user
+.idea
