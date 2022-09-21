@@ -75,7 +75,7 @@ DerivedDataCache/*
 
 # Food and extra ignore
 Plugins/Developer
-!Plugins/FMODStudio/
+!Plugins/FMODStudio/*
 FMODStudio/Intermediate
 MyUE5_FMOD_Project/.cache
 MyUE5_FMOD_Project/.unsaved
