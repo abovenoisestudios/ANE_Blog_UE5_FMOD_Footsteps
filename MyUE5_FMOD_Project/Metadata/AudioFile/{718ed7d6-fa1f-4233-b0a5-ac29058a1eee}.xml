@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{718ed7d6-fa1f-4233-b0a5-ac29058a1eee}">
+		<property name="assetPath">
+			<value>Footsteps/Grass/sx_character_WORLD_footsteps_grass_2.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.59031250000000002</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{40a5edcc-75a8-4da2-86c3-6c85a5f53120}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -24,8 +24,8 @@ AMyUE5ProjectCharacter::AMyUE5ProjectCharacter()
 
 	// Create an FMOD Component. 
 	FmodAudioComponent = CreateDefaultSubobject<UFMODAudioComponent>(TEXT("Footsteps Audio Component")); //Creates the FMOD Audio Component.
-	FmodAudioComponent->SetupAttachment(GetMesh()); // Attaches the compoment to the Skeletal Mesh so the sound travels with our Character.
-	FmodAudioComponent->SetActive(false); // Initializes this component deactivated so it doesn't play at start.
+	FmodAudioComponent->SetupAttachment(GetMesh()); // Attaches the component to the Skeletal Mesh so the sound travels with our Character.
+	FmodAudioComponent->SetAutoActivate(false); // Initializes this component deactivated so it doesn't play at start.
 	
 	// set our turn rate for input
 	TurnRateGamepad = 50.f;
