@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include "FMODBlueprintStatics.h"
-#include "PhysicalMaterials/PhysicalMaterial.h"//
+#include "FMODBlueprintStatics.h" // Include this directive to access FMOD API.
+#include "PhysicalMaterials/PhysicalMaterial.h" // Include this directive to work with Physical Materials.
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
@@ -27,26 +27,44 @@ public:
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Input)
 	float TurnRateGamepad;
-	
+
 protected:
 	
 	#pragma region FMOD Footsteps Parameter Declarations
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Audio")
+	/** Fmod Audio Component. Created in the class constructor. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Audio")
 	UFMODAudioComponent* FmodAudioComponent;
-	
+
+	/** A map data structure. Holds Physical Materials as keys and floats as values.
+	 *	This values will set the correct parameter number in FMOD */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Audio")
 	TMap<UPhysicalMaterial*, float> PhysicalMaterialMap;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Audio")
+	
+	/** Boolean property that sets AddOnScreenDebugMessage function on and makes the line trace visible in game. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Audio")
 	bool bPrintDebug;
-	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Audio")
-	float Offset;
-	
-	UFUNCTION(BlueprintCallable, Category="Audio")
-	UPhysicalMaterial* GetPhysicalMaterialByLinetrace(const float &OffsetZ, const bool &bDebug);
 
+	/** Defines how long the line trace extends from our Character's location on the Z vector.
+	 *	Positive numbers up vector, negative numbers down vector. -150cm set as default */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Audio")
+	float Offset = -150;
+	
+	/**
+	 * @brief Gets a reference of the floor's Physical Material with a Line trace.
+	 * @param OffsetZ How far the Line trace extends from the center of our Character.
+	 * @param bDebug Sets visibility for the Line trace. true: Visible, false: Not Visible
+	 * @return A Physical Material reference
+	 */
+	UFUNCTION(BlueprintCallable, Category="Audio")
+	UPhysicalMaterial* GetPhysicalMaterialByLineTrace(const float &OffsetZ, const bool &bDebug);
+
+	/**
+	 * @brief Gets a Physical Material reference and sets the appropriate parameter value in FMOD. 
+	 * @param HitPhysicalMaterial A Physical Material Reference
+	 * @param bDebug Sets visibility for printing the current Physical Material to the screen. true: Visible, false: Not Visible
+	 * @param ParameterName FMOD parameter name.
+	 */
 	UFUNCTION(BlueprintCallable, Category="Audio")
 	void SetFootstepsParameter(const UPhysicalMaterial* HitPhysicalMaterial, const bool &bDebug, const FName ParameterName);
 	

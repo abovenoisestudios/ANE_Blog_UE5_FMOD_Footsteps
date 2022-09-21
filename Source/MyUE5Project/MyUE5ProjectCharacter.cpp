@@ -2,7 +2,7 @@
 
 #include "MyUE5ProjectCharacter.h"
 
-#include "Kismet/KismetSystemLibrary.h"//
+#include "Kismet/KismetSystemLibrary.h" // Include this directive to access the Line Trace functions.
 
 #include "Animation/AnimInstanceProxy.h"
 #include "Camera/CameraComponent.h"
@@ -23,9 +23,9 @@ AMyUE5ProjectCharacter::AMyUE5ProjectCharacter()
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 
 	// Create an FMOD Component. 
-	FmodAudioComponent = CreateDefaultSubobject<UFMODAudioComponent>(TEXT("Footsteps Audio Component")); //Creates the component.
-	FmodAudioComponent->SetupAttachment(GetMesh()); // Attach it to the Skeletal Mesh so the sound travels with it.
-	FmodAudioComponent->SetActive(false); // Initialize this component deactivated so it doesn't play at start.
+	FmodAudioComponent = CreateDefaultSubobject<UFMODAudioComponent>(TEXT("Footsteps Audio Component")); //Creates the FMOD Audio Component.
+	FmodAudioComponent->SetupAttachment(GetMesh()); // Attaches the compoment to the Skeletal Mesh so the sound travels with our Character.
+	FmodAudioComponent->SetActive(false); // Initializes this component deactivated so it doesn't play at start.
 	
 	// set our turn rate for input
 	TurnRateGamepad = 50.f;
@@ -64,30 +64,32 @@ AMyUE5ProjectCharacter::AMyUE5ProjectCharacter()
 
 #pragma region FMOD Footsteps Parameter Implementation
 
-UPhysicalMaterial* AMyUE5ProjectCharacter::GetPhysicalMaterialByLinetrace(const float &OffsetZ, const bool &bDebug)
+UPhysicalMaterial* AMyUE5ProjectCharacter::GetPhysicalMaterialByLineTrace(const float &OffsetZ, const bool &bDebug)
 {
-	FVector LineStart = GetActorLocation();
-	FVector LineEnd = FVector(LineStart.X, LineStart.Y, LineStart.Z + OffsetZ);
-	EDrawDebugTrace::Type DebugType;
-	FHitResult HitResult; // This struct will hold the linetrace hit results   
+	const FVector LineStart = GetActorLocation(); //Sets the Line Start at our Character's location.
+	const FVector LineEnd = FVector(LineStart.X, LineStart.Y, LineStart.Z + OffsetZ); //Sets the Line End at our Character's location plus the offset.
+	EDrawDebugTrace::Type DebugType; // This enumeration is used to set the visibility of the line trace.
+	FHitResult HitResult; // This struct will hold the line trace hit results.   
 	
-	if (bDebug)                               
+	if (bDebug) // Activate line trace visibility?                          
 		DebugType = EDrawDebugTrace::ForOneFrame;
 	else                                          
 		DebugType = EDrawDebugTrace::None;       
 
+	// Line trace function.
 	UKismetSystemLibrary::LineTraceSingle(this, LineStart, LineEnd,UEngineTypes::ConvertToTraceType(ECC_Visibility),
 		false,TArray<AActor*>(), DebugType, HitResult, true,FLinearColor::Green, FLinearColor::Red);       
 	
-	return Cast<UPhysicalMaterial>(HitResult.PhysMaterial);
+	return Cast<UPhysicalMaterial>(HitResult.PhysMaterial); // Cast and return the Physical Material from HitResult.
 }
-
 
 void AMyUE5ProjectCharacter::SetFootstepsParameter(const UPhysicalMaterial* HitPhysicalMaterial, const bool &bDebug, const FName ParameterName)
 {
-	if (PhysicalMaterialMap.Contains(HitPhysicalMaterial)) // Checks if the map contains the Physical Material name as a key, otherwise the engine will crash.
+	/* Checks if the map contains the Physical Material as a key before setting the FMOD parameter.
+	*  The game will crash if you attempt to find a null reference or a Key that doesn't exist in the map. */
+	if (PhysicalMaterialMap.Contains(HitPhysicalMaterial)) 
 	{
-		FmodAudioComponent->SetParameter(ParameterName, PhysicalMaterialMap[HitPhysicalMaterial]); // Sets the FMOD parameter using the value of the key.
+		FmodAudioComponent->SetParameter(ParameterName, PhysicalMaterialMap[HitPhysicalMaterial]); // Sets the FMOD parameter using the value of the map's key.
 
 		if (bDebug) // If true, prints the name of the Physical Material to the screen and "C++ Implementation".
 			{
@@ -98,7 +100,7 @@ void AMyUE5ProjectCharacter::SetFootstepsParameter(const UPhysicalMaterial* HitP
 				"C++ Implementation");
 			}
 	}
-	else // If a valid key wasn't found, set the default value "0", otherwise the last set parameter will remain.
+	else // If a valid key wasn't found, sets the default parameter value = 0, otherwise the last set parameter will remain.
 	{
 		FmodAudioComponent->SetParameter(ParameterName, 0); 
 	}
