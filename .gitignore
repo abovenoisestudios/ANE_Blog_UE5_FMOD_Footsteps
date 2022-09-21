@@ -47,6 +47,7 @@ SourceArt/**/*.png
 SourceArt/**/*.tga
 
 # Binary Files
+Binaries/*
 
 # Builds
 Build/*
@@ -74,6 +75,8 @@ DerivedDataCache/*
 
 # Food and extra ignore
 Plugins/Developer
+!Plugins/FMODStudio/
+FMODStudio/Intermediate
 MyUE5_FMOD_Project/.cache
 MyUE5_FMOD_Project/.unsaved
 MyUE5_FMOD_Project/.user
