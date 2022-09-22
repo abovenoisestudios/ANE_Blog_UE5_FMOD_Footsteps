@@ -40,12 +40,12 @@ Disfruta!
 
 ## Viewport
 
-<img height="493" src="/Users/horacio/Desktop/Blog Posts/Footsteps FMOD/6. UE5 Planes.png" title="Physical Materials" width="963"/>
+<img height="493" src="Images/6. UE5 Planes.png" title="Physical Materials" width="963"/>
 
 ## C++ Implementation
 
-<img height="476" src="/Users/horacio/Desktop/Blog Posts/Footsteps FMOD/15. Full .cpp file.png" title="C++ Implementation" width="782.5"/>
+<img height="476" src="Images/15. Full .cpp file.png" width="782.5"/>
 
 ## Blueprint Implementation
 
-<img height="473.5" src="/Users/horacio/Desktop/Blog Posts/Footsteps FMOD/14. Set Footsteps Parameter.png" title="Blueprint Implementation" width="849"/>
+<img height="473.5" src="Images/14. Set Footsteps Parameter.png" title="Blueprint Implementation" width="849"/>
