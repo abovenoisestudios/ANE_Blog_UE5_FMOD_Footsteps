@@ -1,7 +1,7 @@
 # Footsteps System in Unreal Engine 5 and FMOD
 ### Game Audio Blog - Above Noise Studios 
-English: [https://abovenoisestudios.com/blogeng](https://abovenoisestudios.com/blogeng)\
-Spanish: [https://abovenoisestudios.com/blogespanol](https://abovenoisestudios.com/blogespanol)\
+English: [https://abovenoisestudios.com/blogeng/fmodue5footstepseng](https://abovenoisestudios.com/blogeng/fmodue5footstepseng)\
+Spanish: [https://abovenoisestudios.com/blogespanol/fmodue5footstepsesp](https://abovenoisestudios.com/blogespanol/fmodue5footstepsesp)\
 \
 Created By: Horacio Valdivieso\
 [horacio@abovenoisestudios.com](mailto:horacio@abovenoisestudios.com)\
@@ -37,3 +37,15 @@ Haz double click en **MyUE5Project.uproject** para abrir el proyecto UE5.
 El proyecto FMOD Studio se encuentra en la carpeta **MyUE5_FMOD_Project**.
 
 Disfruta!
+
+## Viewport
+
+<img height="493" src="/Users/horacio/Desktop/Blog Posts/Footsteps FMOD/6. UE5 Planes.png" title="Physical Materials" width="963"/>
+
+## C++ Implementation
+
+<img height="476" src="/Users/horacio/Desktop/Blog Posts/Footsteps FMOD/15. Full .cpp file.png" title="C++ Implementation" width="782.5"/>
+
+## Blueprint Implementation
+
+<img height="473.5" src="/Users/horacio/Desktop/Blog Posts/Footsteps FMOD/14. Set Footsteps Parameter.png" title="Blueprint Implementation" width="849"/>

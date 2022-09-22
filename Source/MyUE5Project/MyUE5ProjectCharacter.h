@@ -52,7 +52,7 @@ protected:
 	
 	/**
 	 * @brief Gets a reference of the floor's Physical Material with a Line trace.
-	 * @param OffsetZ How far the Line trace extends from the center of our Character.
+	 * @param OffsetZ How far the line trace extends from our Character's center.
 	 * @param bDebug Sets visibility for the Line trace. true: Visible, false: Not Visible
 	 * @return A Physical Material reference
 	 */

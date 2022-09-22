@@ -77,8 +77,9 @@ UPhysicalMaterial* AMyUE5ProjectCharacter::GetPhysicalMaterialByLineTrace(const 
 		DebugType = EDrawDebugTrace::None;       
 
 	// Line trace function.
-	UKismetSystemLibrary::LineTraceSingle(this, LineStart, LineEnd,UEngineTypes::ConvertToTraceType(ECC_Visibility),
-		false,TArray<AActor*>(), DebugType, HitResult, true,FLinearColor::Green, FLinearColor::Red);       
+	UKismetSystemLibrary::LineTraceSingle(this, LineStart, LineEnd,
+		UEngineTypes::ConvertToTraceType(ECC_Visibility),false,
+		TArray<AActor*>(), DebugType, HitResult, true,FLinearColor::Green, FLinearColor::Red);       
 	
 	return Cast<UPhysicalMaterial>(HitResult.PhysMaterial); // Cast and return the Physical Material from HitResult.
 }
