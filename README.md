@@ -25,7 +25,7 @@ The FMOD Studio project is inside the **MyUE5_FMOD_Project** folder.
 Enjoy!
 
 ### **Spanish:**
-Este repositorio contiene un proyecto en Unreal Engine 5, un poyecto de FMOD studio, y la integración del plugin FMOD para Unreal.
+Este repositorio contiene un proyecto en Unreal Engine 5, un proyecto de FMOD studio, y la integración del plugin FMOD para Unreal.
 Usa una maqueta en tercera persona creada con el Epic Games Launcher.
 Este proyecto pretende mostrar como crear un sistema de pasos en FMOD y cómo programarlo usando Blueprints y C++. 
 
