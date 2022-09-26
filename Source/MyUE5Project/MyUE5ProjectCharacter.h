@@ -37,7 +37,7 @@ protected:
 	UFMODAudioComponent* FmodAudioComponent;
 
 	/** A map data structure. Holds Physical Materials as keys and floats as values.
-	 *	This values will set the correct parameter number in FMOD */
+	 *	These values will set the correct parameter number in FMOD */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Audio")
 	TMap<UPhysicalMaterial*, float> PhysicalMaterialMap;
 	
