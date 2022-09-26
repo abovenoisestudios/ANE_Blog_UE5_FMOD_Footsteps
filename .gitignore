@@ -40,7 +40,6 @@
 *.sdf
 *.VC.db
 *.VC.opendb
-Saved/*
 
 # Precompiled Assets
 SourceArt/**/*.png
@@ -73,7 +72,7 @@ Plugins/*/Intermediate/*
 # Cache files for the editor to use
 DerivedDataCache/*
 
-# Food and extra ignore
+# FMOD and extra ignore
 Plugins/Developer
 !Plugins/FMODStudio/*
 FMODStudio/Intermediate
