@@ -67,6 +67,10 @@ protected:
 	 */
 	UFUNCTION(BlueprintCallable, Category="Audio")
 	void SetFootstepsParameter(const UPhysicalMaterial* HitPhysicalMaterial, const bool &bDebug, const FName ParameterName);
+
+	/** In case you want to implement On Landing Sounds. Callable from Blueprints*/
+	UFUNCTION(BlueprintCallable)
+	virtual void Landed(const FHitResult& Hit) override;
 	
 	#pragma endregion
 	
@@ -98,6 +102,7 @@ protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	// End of APawn interface
+	
 
 public:
 	/** Returns CameraBoom subobject **/
