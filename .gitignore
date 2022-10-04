@@ -79,5 +79,8 @@ FMODStudio/Intermediate
 MyUE5_FMOD_Project/.cache
 MyUE5_FMOD_Project/.unsaved
 MyUE5_FMOD_Project/.user
-.idea
+MyUE5_FMOD_Project/Metadata/ProfilerSession
+MyUE5_FMOD_Project/Metadata/ProfilerFolder
 Plugins/FMODStudio/.DS_Store
+*.idea
+
