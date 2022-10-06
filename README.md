@@ -18,7 +18,13 @@ This project aims to show how to create a footstep audio system in FMOD and prog
 **How to Use?:**\
 To download this project, click on the **Code** button and **Download Zip**.
 To rebuild and compile the project, ensure you have [Visual Studio](https://visualstudio.microsoft.com/) for Windows or [Xcode](https://download.developer.apple.com/Developer_Tools/Xcode_13.4.1/Xcode_13.4.1.xip) for Mac.
+Right-click on **MyUE5Project.uproject** and choose **"Generate Visual Studio Project Files"** on Windows or **Services > "Generate Xcode project"** on Mac.
 Double-click on **MyUE5Project.uproject** to open the UE5 project.
+
+**Rebuild the project:**
+
+<img height="261" src="Images/Rebuild Project.png" width="249"/>
+
 The FMOD Studio project is inside the **MyUE5_FMOD_Project** folder.
 
 **About Compiler Versions:**
@@ -42,7 +48,13 @@ Este proyecto pretende mostrar como crear un sistema de pasos en FMOD y cómo pr
 **Cómo Usar?:**\
 Para descargar este proyecto, da click en el botón **Code** y luego en **Download Zip**.
 Para construir y compilar el proyecto, asegúrate de tener [Visual Studio](https://visualstudio.microsoft.com/) para Windows o [Xcode](https://download.developer.apple.com/Developer_Tools/Xcode_13.4.1/Xcode_13.4.1.xip).
-Haz double click en **MyUE5Project.uproject** para abrir el proyecto UE5.
+Haz click derecho en **MyUE5Project.uproject** y selecciona **"Generate Visual Studio Project Files"** en Windows o **Services > "Generate Xcode project"** en Mac.
+Haz doble click en **MyUE5Project.uproject** para abrir el proyecto UE5.
+
+**Reconstruye el proyecto:**
+
+<img height="261" src="Images/Rebuild Project.png" width="249"/>
+
 El proyecto FMOD Studio se encuentra en la carpeta **MyUE5_FMOD_Project**.
 
 **Sobre las versiones del compilador:**
